@@ -7,20 +7,24 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
-import HomeScreen from './screens/HomeScreen';
+import {StatusBar} from 'react-native';
+
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import {NavigationContainer} from '@react-navigation/native';
+import 'react-native-gesture-handler';
+
+import MyTabs from './components/MyTabs';
 
 const App: () => Node = () => {
+  const Tab = createBottomTabNavigator();
+
   return (
-    <>
+    <NavigationContainer>
       <StatusBar barStyle={'dark-content'} />
-      <SafeAreaView>
-        <HomeScreen />
-      </SafeAreaView>
-    </>
+      <MyTabs />
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default App;
