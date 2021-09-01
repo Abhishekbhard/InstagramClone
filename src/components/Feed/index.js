@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from '../Post';
 
-import Stories from '../stories';
+import Stories from '../UserStoriesPreview';
 
 import {FlatList} from 'react-native';
 

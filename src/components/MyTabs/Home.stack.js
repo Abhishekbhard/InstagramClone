@@ -12,25 +12,28 @@ const Stack = createStackNavigator();
 
 function HomeStackScreen() {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        title: 'Instagram',
-        headerTitleAlign: 'center',
-        headerTitle: () => (
-          <Image resizeMode="contain" source={logo} style={{width: 135}} />
-        ),
-        headerLeftContainerStyle: {
-          marginLeft: 15,
-        },
-        headerRightContainerStyle: {
-          marginRight: 15,
-        },
-        headerLeft: () => <Feather name="camera" size={22} color="#000" />,
-        headerRight: () => (
-          <Ionicons name="paper-plane-outline" size={22} color="#000" />
-        ),
-      }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          title: 'Instagram',
+          headerTitleAlign: 'center',
+          headerTitle: () => (
+            <Image resizeMode="contain" source={logo} style={{width: 135}} />
+          ),
+          headerLeftContainerStyle: {
+            marginLeft: 15,
+          },
+          headerRightContainerStyle: {
+            marginRight: 15,
+          },
+          headerLeft: () => <Feather name="camera" size={22} color="#000" />,
+          headerRight: () => (
+            <Ionicons name="paper-plane-outline" size={22} color="#000" />
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 }
