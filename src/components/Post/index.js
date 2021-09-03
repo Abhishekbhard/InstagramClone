@@ -7,12 +7,12 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 const Post = ({post}) => (
   <View>
-    <Header imageUri={post.user.imageUri} name={post.user.name} />
-    <Body imageUri={post.imageUri} />
+    <Header imageUri={post.image} name={post.name} />
+    <Body imageUri={post.image} />
     <Footer
       caption={post.caption}
-      likesCount={post.likesCount}
-      postedAt={post.postedAt}
+      likesCount={post.likes}
+      postedAt={post.createdAt}
     />
   </View>
 );

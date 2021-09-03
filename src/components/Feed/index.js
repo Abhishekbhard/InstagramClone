@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Post from '../Post';
+
+import {API, graphqlOperation} from 'aws-amplify';
+import {listPosts} from '../../graphql/queries';
 
 import Stories from '../UserStoriesPreview';
 
@@ -44,12 +47,30 @@ const data = [
   },
 ];
 
-const Feed = () => (
-  <FlatList
-    data={data}
-    ListHeaderComponent={Stories}
-    renderItem={({item}) => <Post post={item} />}
-  />
-);
+const Feed = () => {
+  const [post, setPost] = useState([]);
+
+  const fetchPost = async () => {
+    try {
+      const postData = await API.graphql(graphqlOperation(listPosts));
+      console.log(postData.data.listPosts);
+      setPost(postData.data.listPosts.items);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  useEffect(() => {
+    fetchPost();
+  }, []);
+
+  return (
+    <FlatList
+      data={post}
+      ListHeaderComponent={Stories}
+      keyExtractor={({id}) => id}
+      renderItem={({item}) => <Post post={item} />}
+    />
+  );
+};
 
 export default Feed;
