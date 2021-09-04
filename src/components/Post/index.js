@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 const Post = ({post}) => (
   <View>
-    <Header imageUri={post.image} name={post.name} />
+    <Header imageUri={post.user.image} name={post.user.name} />
     <Body imageUri={post.image} />
     <Footer
       caption={post.caption}

@@ -10,29 +10,30 @@ import styles from './styles';
 
 const Stories = () => {
   const [stories, setStories] = useState([]);
-  const fetchStories = async () => {
-    try {
-      const postData = await API.graphql(graphqlOperation(listStories));
-      console.log(postData.data.listStor);
-      setStories(postData.data.listStories.items);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+
   useEffect(() => {
     fetchStories();
   }, []);
 
+  const fetchStories = async () => {
+    try {
+      const storiesData = await API.graphql(graphqlOperation(listStories));
+      console.log(storiesData.data.listStories.items);
+      setStories(storiesData.data.listStories.items);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={stories}
-        horizontal
-        keyExtractor={({id}) => id}
-        showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => <Story story={item} />}
-      />
-    </View>
+    <FlatList
+      data={stories}
+      keyExtractor={({user: {id}}) => id}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      style={styles.container}
+      renderItem={({item}) => <Story story={item} />}
+    />
   );
 };
 

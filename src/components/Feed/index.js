@@ -53,14 +53,24 @@ const Feed = () => {
   const fetchPost = async () => {
     try {
       const postData = await API.graphql(graphqlOperation(listPosts));
-      console.log(postData.data.listPosts);
+      console.log(postData);
       setPost(postData.data.listPosts.items);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  const fetchUsers = async () => {
+    try {
+      const postData = await API.graphql(graphqlOperation(listUsers));
+      console.log(postData);
+      //setPost(postData.data.listUsers.items);
     } catch (error) {
       console.log(error.message);
     }
   };
   useEffect(() => {
     fetchPost();
+    // fetchUsers();
   }, []);
 
   return (
